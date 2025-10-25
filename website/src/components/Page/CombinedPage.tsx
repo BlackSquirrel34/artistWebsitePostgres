@@ -9,7 +9,7 @@ export default function CombinedPage({ page }: { page: Page }) {
   // render with sub-components that create a onesize fits all layout.
 
   return (
-    <div>
+    <div className="px-2">
       {/*    <div>Hello from combined page</div> */}
       {/*  <pre className="mt-4 p-4 bg-gray-100 rounded overflow-x-auto">
         {JSON.stringify(page, null, 2)}

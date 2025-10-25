@@ -1,6 +1,7 @@
 import { Page } from '@/payload-types'
 import { Text } from '@/payload-types'
 import PageNotFound from '../PageNotFound'
+import TextPDFDownload from './TextPDFDownload'
 
 export default function TextsOnly({ page }: { page: Page }) {
   // page.texts can be (number | Text)[] | null | undefined
@@ -46,6 +47,11 @@ export default function TextsOnly({ page }: { page: Page }) {
       {texts.map((text) => (
         <div key={text.id} className="py-4">
           <h3 className="font-bold pb-4">{text.title}</h3>
+          {text.pdf && (
+            <p>
+              <TextPDFDownload text={text} />
+            </p>
+          )}
           <p>{getFirstParagraphText(text.layout ?? [])}</p>
         </div>
       ))}

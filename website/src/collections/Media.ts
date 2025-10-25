@@ -8,14 +8,14 @@ export const Media: CollectionConfig = {
   },
   admin: {
     hidden: true,
-    description: 'Dateien können über die Media-Sammlung im Admin-Panel verwaltet werden.',
+    // description: 'Dateien können über die Media-Sammlung verwaltet werden.',
   },
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: 'alt',
+      name: 'name',
       type: 'text',
       required: true,
     },

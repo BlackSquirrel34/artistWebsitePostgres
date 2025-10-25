@@ -164,14 +164,12 @@ export interface User {
   password?: string | null;
 }
 /**
- * Dateien können über die Media-Sammlung im Admin-Panel verwaltet werden.
- *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
   id: number;
-  alt: string;
+  name: string;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -217,6 +215,7 @@ export interface Text {
         blockType: 'richtext';
       }[]
     | null;
+  pdf?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -358,7 +357,7 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
+  name?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -390,6 +389,7 @@ export interface TextsSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  pdf?: T;
   updatedAt?: T;
   createdAt?: T;
 }

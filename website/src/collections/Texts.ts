@@ -41,6 +41,15 @@ export const Texts: CollectionConfig = {
       type: 'blocks',
       blocks: [RichTextBlock],
     },
+    {
+      name: 'pdf',
+      label: 'PDF',
+      type: 'upload',
+      relationTo: 'media',
+      filterOptions: {
+        mimeType: { equals: 'application/pdf' },
+      },
+    },
   ],
 }
 
