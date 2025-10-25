@@ -19,7 +19,7 @@ export default function ImagesOnly({ page }: { page: Page }) {
       const media = block.image
       return {
         id: media.id,
-        alt: media.alt ?? '', // provide default alt text if missing
+        alt: media.name ?? '', // provide default alt text if missing
         name: media.filename ?? 'unknown',
         url: media.url ?? 'unknown',
         filename: media.filename ?? 'unknown',

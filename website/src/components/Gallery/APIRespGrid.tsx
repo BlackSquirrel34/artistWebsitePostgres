@@ -98,7 +98,7 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
               width={img.width}
               height={img.height}
               src={img.url}
-              alt={img.alt}
+              alt={img.name}
               className="w-full h-auto"
               // we want to trigger lightgallery
               onClick={() => lightboxRef.current?.openGallery(index)}

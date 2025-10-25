@@ -13,7 +13,7 @@ export default function HeroBlock({ block }: { block: HeroProps }) {
       {typeof block?.image === 'object' && block.image.url && (
         <Image
           src={block.image.url}
-          alt={block.image.alt}
+          alt={block.image.name}
           width={800}
           height={600}
           priority
