@@ -5,6 +5,7 @@ export const Users: CollectionConfig = {
   admin: {
     useAsTitle: 'email',
     hidden: true,
+    description: 'Benutzer können über das Admin-Panel hinzugefügt und verwaltet werden.',
   },
   auth: true,
   fields: [

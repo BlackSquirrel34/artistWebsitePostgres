@@ -8,6 +8,7 @@ export const Media: CollectionConfig = {
   },
   admin: {
     hidden: true,
+    description: 'Dateien können über die Media-Sammlung im Admin-Panel verwaltet werden.',
   },
   access: {
     read: () => true,

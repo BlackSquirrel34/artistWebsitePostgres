@@ -5,7 +5,8 @@ export const NavLinks: GlobalConfig = {
   label: 'Navigationsmenü',
   admin: {
     group: 'Seiten bearbeiten oder hinzufügen',
-    description: 'Hier lassen sich die oben in der Navigation angezeigten Links anpassen.',
+    description:
+      'Hier lassen sich die oben in der Navigation angezeigten Links anpassen. Der Link zu einer Seite muss mit dem bei der Seite eingetragenen slug genau übereinstimmmen. Der Link zu einer Unterseite setzt sich zusammen aus dem slug der Parent page und dem slug der Unterseite (Subpage, subslug.)',
   },
   fields: [
     {

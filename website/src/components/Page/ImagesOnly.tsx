@@ -3,7 +3,7 @@ import APIResponsiveGridGallery from '../Gallery/APIRespGrid'
 import { ImageT } from '@/utils/types'
 import React from 'react'
 
-// we won't ever meet a global with imges only
+// we won't ever meet a global with imges only, so we take a page as param here
 export default function ImagesOnly({ page }: { page: Page }) {
   // need to extract the images from the page
   // populate our data structure

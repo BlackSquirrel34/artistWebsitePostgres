@@ -15,6 +15,8 @@ export const Subpages: CollectionConfig = {
     // they must be created via Pages
     // upon rendering we'll just use the pages and query via the relationship
     // hidden: true,
+    description:
+      'Unterseiten können hier hinzugefügt und verwaltet werden. Sie müssen zwingend mit einer Seite (Parent page) verknüpft werden.',
   },
   fields: [
     {

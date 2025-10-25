@@ -24,16 +24,16 @@ export async function generateSubpageContent(subslug: string): Promise<JSX.Eleme
   console.log('Fetched subpage:', subpage)
 
   return new Promise((resolve) => {
-    // there is either a page or global with that slug
+    // there might be a subpage with that slug. if yes we can proceed.
 
     if (subpage) {
-      // Determine which Page component to render based on page data
+      // subpages are images-only. Need to check whether images are present.
       const hasImages = Array.isArray(subpage.layout) && subpage.layout.length > 0
 
       if (hasImages) {
         resolve(<ImagesSubpage subpage={subpage} />)
       } else {
-        resolve(<p>No content available for slug {subslug}</p>)
+        resolve(<p>No content available for subslug {subslug}</p>)
       }
     } else {
       resolve(<PageNotFound />)

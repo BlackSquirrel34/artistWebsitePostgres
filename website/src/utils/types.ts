@@ -6,4 +6,6 @@ export interface ImageT {
   filename: string
   width: number
   height: number
+  title?: string // add title
+  description?: string // add description
 }

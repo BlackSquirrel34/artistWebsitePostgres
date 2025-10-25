@@ -9,6 +9,8 @@ export const Texts: CollectionConfig = {
   },
   admin: {
     hidden: true,
+    useAsTitle: 'title',
+    description: 'Texte können nur über die Seiten (Pages) hinzugefügt und verwaltet werden.',
   },
   // make visible just for dev.
   // that's how we ensure no orphaned texts are created,  e.g.

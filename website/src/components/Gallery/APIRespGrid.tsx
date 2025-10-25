@@ -1,5 +1,17 @@
-import { getImages2 } from '@/utils/apiMock2'
+'use client'
+// import { getImages2 } from '@/utils/apiMock2'
 import { ImageT } from '@/utils/types'
+import { useRef } from 'react'
+// next image instead of img for optimization
+import Image from 'next/image'
+
+import type { LightGallery } from 'lightgallery/lightgallery'
+import LightGalleryComponent from 'lightgallery/react'
+// import styles
+import 'lightgallery/css/lightgallery.css'
+import 'lightgallery/css/lg-zoom.css'
+// import plugins
+import lgZoom from 'lightgallery/plugins/zoom'
 
 interface APIResponsiveGridGalleryProps {
   api_images: ImageT[] // from types, not mockAPI, that's important
@@ -7,6 +19,7 @@ interface APIResponsiveGridGalleryProps {
 
 export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGridGalleryProps) {
   console.log('### api_images: ', api_images)
+  const lightboxRef = useRef<LightGallery | null>(null)
 
   // const images = getImages2()
   const images = api_images
@@ -55,7 +68,15 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
             style={{ gridColumn: `span ${img.colSpanLarge}` }}
             className="overflow-hidden rounded"
           >
-            <img src={img.url} alt={img.alt} className="w-full h-auto" />
+            <Image
+              src={img.url}
+              alt={img.alt}
+              width={img.width}
+              height={img.height}
+              className="w-full h-auto"
+              // we want to trigger lightgallery
+              onClick={() => lightboxRef.current?.openGallery(index)}
+            />
           </div>
         ))}
       </div>
@@ -73,7 +94,15 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
             style={{ gridColumn: `span ${img.colSpanMedium}` }}
             className="overflow-hidden rounded"
           >
-            <img src={img.url} alt={img.alt} className="w-full h-auto" />
+            <Image
+              width={img.width}
+              height={img.height}
+              src={img.url}
+              alt={img.alt}
+              className="w-full h-auto"
+              // we want to trigger lightgallery
+              onClick={() => lightboxRef.current?.openGallery(index)}
+            />
           </div>
         ))}
       </div>
@@ -87,10 +116,35 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
       >
         {images.map((img, index) => (
           <div key={index} className="overflow-hidden rounded">
-            <img src={img.url} alt={img.alt} className="w-full h-auto py-2" />
+            <Image
+              width={img.width}
+              height={img.height}
+              src={img.url}
+              alt={img.alt}
+              className="w-full h-auto py-2" // we want to trigger lightgallery
+              onClick={() => lightboxRef.current?.openGallery(index)}
+            />
           </div>
         ))}
       </div>
+
+      {/* LightGallery component for lightbox functionality */}
+      <LightGalleryComponent
+        onInit={(ref) => {
+          if (ref) {
+            lightboxRef.current = ref.instance
+          }
+        }}
+        speed={500}
+        plugins={[lgZoom]}
+        escKey
+        dynamic
+        dynamicEl={images.map((image) => ({
+          src: image.url,
+          thumb: image.url,
+          subHtml: `<h4>${image.title ?? 'untitled'}</h4><p>${image.description ?? 'no description'}</p>`,
+        }))}
+      />
     </div>
   )
 }

@@ -138,6 +138,8 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Benutzer können über das Admin-Panel hinzugefügt und verwaltet werden.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -162,6 +164,8 @@ export interface User {
   password?: string | null;
 }
 /**
+ * Dateien können über die Media-Sammlung im Admin-Panel verwaltet werden.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
@@ -181,6 +185,8 @@ export interface Media {
   focalY?: number | null;
 }
 /**
+ * Texte können nur über die Seiten (Pages) hinzugefügt und verwaltet werden.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "texts".
  */
@@ -215,6 +221,8 @@ export interface Text {
   createdAt: string;
 }
 /**
+ * Seiten können hier hinzugefügt und verwaltet werden.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
@@ -222,38 +230,7 @@ export interface Page {
   id: number;
   name: string;
   slug: string;
-  image?:
-    | (
-        | {
-            description?: string | null;
-            image: number | Media;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'hero';
-          }
-        | Image
-        | {
-            content: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'richtext';
-          }
-      )[]
-    | null;
+  image?: Image[] | null;
   texts?: (number | Text)[] | null;
   updatedAt: string;
   createdAt: string;
@@ -264,12 +241,15 @@ export interface Page {
  */
 export interface Image {
   image: number | Media;
-  ImageAspectRatio?: ('Quadrat' | 'Breit' | 'Hoch') | null;
+  title?: string | null;
+  description?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image';
 }
 /**
+ * Unterseiten können hier hinzugefügt und verwaltet werden. Sie müssen zwingend mit einer Seite (Parent page) verknüpft werden.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "subpages".
  */
@@ -423,22 +403,7 @@ export interface PagesSelect<T extends boolean = true> {
   image?:
     | T
     | {
-        hero?:
-          | T
-          | {
-              description?: T;
-              image?: T;
-              id?: T;
-              blockName?: T;
-            };
         image?: T | ImageSelect<T>;
-        richtext?:
-          | T
-          | {
-              content?: T;
-              id?: T;
-              blockName?: T;
-            };
       };
   texts?: T;
   updatedAt?: T;
@@ -450,7 +415,8 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface ImageSelect<T extends boolean = true> {
   image?: T;
-  ImageAspectRatio?: T;
+  title?: T;
+  description?: T;
   id?: T;
   blockName?: T;
 }
@@ -533,7 +499,7 @@ export interface Homepage {
   createdAt?: string | null;
 }
 /**
- * Hier lassen sich die oben in der Navigation angezeigten Links anpassen.
+ * Hier lassen sich die oben in der Navigation angezeigten Links anpassen. Der Link zu einer Seite muss mit dem bei der Seite eingetragenen slug genau übereinstimmmen. Der Link zu einer Unterseite setzt sich zusammen aus dem slug der Parent page und dem slug der Unterseite (Subpage, subslug.)
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navLinks".

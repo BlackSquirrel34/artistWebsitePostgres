@@ -16,9 +16,12 @@ export const ImageBlock: Block = {
       required: true,
     },
     {
-      type: 'radio',
-      name: 'ImageAspectRatio',
-      options: ['Quadrat', 'Breit', 'Hoch'],
+      name: 'title',
+      type: 'text',
+    },
+    {
+      name: 'description',
+      type: 'text',
     },
   ],
 }

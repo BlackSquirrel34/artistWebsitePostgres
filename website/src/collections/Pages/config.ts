@@ -1,6 +1,6 @@
-import { HeroBlock } from '@/blocks/hero/schema'
+// import { HeroBlock } from '@/blocks/hero/schema'
 import { ImageBlock } from '@/blocks/image/schema'
-import { RichTextBlock } from '@/blocks/richText/schema'
+// import { RichTextBlock } from '@/blocks/richText/schema'
 import { CollectionConfig } from 'payload'
 
 export const Pages: CollectionConfig = {
@@ -11,8 +11,8 @@ export const Pages: CollectionConfig = {
   },
   admin: {
     group: 'Seiten bearbeiten oder hinzufügen',
-    // subpages must be created via Pages
-    // upon rendering we'll just use the pages and query via the relationship
+    useAsTitle: 'name',
+    description: 'Seiten können hier hinzugefügt und verwaltet werden.',
   },
   fields: [
     {
@@ -34,7 +34,7 @@ export const Pages: CollectionConfig = {
       name: 'image',
       label: 'Bild',
       type: 'blocks',
-      blocks: [HeroBlock, ImageBlock, RichTextBlock],
+      blocks: [ImageBlock],
     },
     // Add relationship to sub-pages
     /*    {
