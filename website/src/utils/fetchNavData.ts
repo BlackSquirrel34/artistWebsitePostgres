@@ -29,16 +29,56 @@ export default async function FetchNavData() {
   // console.log('ownername queried with helper function: ', ownerName)
 
   // querying for navigation links form global "navigation"
-  const navData = await payload.findGlobal({
-    slug: 'navLinks',
-    depth: 3,
-  })
+  // let's be careful, these data might not be there yet
+  try {
+    const navData = await payload.findGlobal({
+      slug: 'navLinks',
+      depth: 3,
+    })
 
-  /*   if (!navLinks) {
-    return {}
-  } */
+    // Check if navData exists and has items
+    if (!navData || !navData.navItems || navData.navItems.length === 0) {
+      // Return dummy navItems if no data
+      return [
+        {
+          id: '1',
+          label: 'Home',
+          years: null,
+          link: 'home',
+          subpageLinks: [],
+        },
+        {
+          id: '2',
+          label: 'About',
+          years: null,
+          link: 'about',
+          subpageLinks: [],
+        },
+      ]
+    }
 
-  console.log('navLinks queried with helper function: ', navData)
+    // Otherwise, return the fetched data
+    console.log('navLinks queried with helper function: ', navData)
+    return navData
+  } catch (error) {
+    console.error('Error fetching nav data:', error)
 
-  return navData
+    // if there's an error, return dummy navItems, too
+    return [
+      {
+        id: '1',
+        label: 'Home',
+        years: null,
+        link: 'home',
+        subpageLinks: [],
+      },
+      {
+        id: '2',
+        label: 'About',
+        years: null,
+        link: 'about',
+        subpageLinks: [],
+      },
+    ]
+  }
 }
