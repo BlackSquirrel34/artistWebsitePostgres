@@ -1,5 +1,6 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import { NavLink } from '@/payload-types'
 
 export async function fetchOwnerName(): Promise<string> {
   const payloadConfig = await config
@@ -7,22 +8,29 @@ export async function fetchOwnerName(): Promise<string> {
 
   // api calls
   // querying for the ownerName from Contact global
-  const contactInfo = await payload.findGlobal({
-    slug: 'contact',
-    select: {
-      contactDetails: true,
-    },
-  })
+  try {
+    // happy case
+    const contactInfo = await payload.findGlobal({
+      slug: 'contact',
+      select: {
+        contactDetails: true,
+      },
+    })
 
-  if (!contactInfo || !contactInfo.contactDetails) {
-    return 'Home'
+    if (!contactInfo || !contactInfo.contactDetails) {
+      return 'Home'
+    }
+
+    const ownerName = contactInfo.contactDetails.name
+
+    return ownerName
+  } catch (error) {
+    console.error('Error fetching contact info:', error)
+    return 'Home' // default name in case of error
   }
-
-  const ownerName = contactInfo.contactDetails.name
-  return ownerName
 }
 
-export default async function FetchNavData() {
+export default async function FetchNavData(): Promise<NavLink> {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
 
@@ -39,7 +47,40 @@ export default async function FetchNavData() {
     // Check if navData exists and has items
     if (!navData || !navData.navItems || navData.navItems.length === 0) {
       // Return dummy navItems if no data
-      return [
+      // Return default NavLink object with navItems
+      return {
+        id: 0,
+        navItems: [
+          {
+            id: '1',
+            label: 'Home',
+            years: null,
+            link: 'home',
+            subpageLinks: [],
+          },
+          {
+            id: '2',
+            label: 'About',
+            years: null,
+            link: 'about',
+            subpageLinks: [],
+          },
+        ],
+        updatedAt: null,
+        createdAt: null,
+      }
+    }
+
+    // Otherwise, return the fetched data
+    console.log('navLinks queried with helper function: ', navData)
+    return navData
+  } catch (error) {
+    console.error('Error fetching nav data:', error)
+
+    // if there's an error, return dummy navItems, too
+    return {
+      id: 0,
+      navItems: [
         {
           id: '1',
           label: 'Home',
@@ -54,31 +95,9 @@ export default async function FetchNavData() {
           link: 'about',
           subpageLinks: [],
         },
-      ]
+      ],
+      updatedAt: null,
+      createdAt: null,
     }
-
-    // Otherwise, return the fetched data
-    console.log('navLinks queried with helper function: ', navData)
-    return navData
-  } catch (error) {
-    console.error('Error fetching nav data:', error)
-
-    // if there's an error, return dummy navItems, too
-    return [
-      {
-        id: '1',
-        label: 'Home',
-        years: null,
-        link: 'home',
-        subpageLinks: [],
-      },
-      {
-        id: '2',
-        label: 'About',
-        years: null,
-        link: 'about',
-        subpageLinks: [],
-      },
-    ]
   }
 }
