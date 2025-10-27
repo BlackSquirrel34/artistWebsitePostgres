@@ -138,7 +138,7 @@ export interface UserAuthOperations {
   };
 }
 /**
- * Benutzer können über das Admin-Panel hinzugefügt und verwaltet werden.
+ * Benutzer können hier hinzugefügt und verwaltet werden.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".

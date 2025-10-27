@@ -111,17 +111,31 @@ export default function SubRespNav({ ownerName, navData }: SubRespNavProps) {
                 {/* Main item button. Expands only if tehre actually are subItems to show */}
                 <Link href={item.link ? `${baseUrl}/${item.link}` : '#'}>
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      const target = e.target as Element
                       if (item.subpageLinks && item.subpageLinks.length > 0) {
-                        handleMainClick(index)
+                        if (target.closest('.arrow-span')) {
+                          // Click was on arrow, do nothing here
+                          return
+                        } else {
+                          // Click on label area
+                          toggleMenu()
+                        }
+                      } else {
+                        toggleMenu()
                       }
                     }}
                     className="w-full text-left px-2 py-1 hover:bg-gray-700 flex justify-between items-center"
                   >
-                    {item.label}
-                    {/* Show arrow only if there are subpageLinks */}
+                    <span className="">{item.label}</span>
                     {item.subpageLinks && item.subpageLinks.length > 0 && (
-                      <span>{activeMainIndex === index ? '▲' : '▼'}</span>
+                      <span
+                        className="arrow-span cursor-pointer"
+                        onClick={() => handleMainClick(index)}
+                        role="button"
+                      >
+                        {activeMainIndex === index ? '▲' : '▼'}
+                      </span>
                     )}
                   </button>
                 </Link>
@@ -129,11 +143,11 @@ export default function SubRespNav({ ownerName, navData }: SubRespNavProps) {
                 {activeMainIndex === index && (
                   <ul className="pl-4 mt-2 space-y-2">
                     {item.subpageLinks?.map((subItem, subIdx) => (
-                      <li key={subIdx} className="px-2 py-1 hover:bg-gray-700">
-                        <Link href={subItem.link ? `${baseUrl}/${subItem.link}` : '#'}>
+                      <Link key={subIdx} href={subItem.link ? `${baseUrl}/${subItem.link}` : '#'}>
+                        <li onClick={toggleMenu} className="px-2 py-1 hover:bg-gray-700">
                           {subItem.label}
-                        </Link>
-                      </li>
+                        </li>
+                      </Link>
                     ))}
                   </ul>
                 )}
