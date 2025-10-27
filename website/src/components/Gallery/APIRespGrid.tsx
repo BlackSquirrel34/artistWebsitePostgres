@@ -57,7 +57,7 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
     <div className="p-4 max-w-[1200px] mx-auto">
       {/* Large layout: visible only on lg+ screens */}
       <div
-        className="hidden lg:grid lg:min-w-[800px] gap-4"
+        className="hidden lg:grid lg:min-w-[800px] gap-4 items-start" // items start to prevent excess whitespace
         style={{
           gridTemplateColumns: `repeat(${gridColumnCountLarge}, minmax(0, 1fr))`,
         }}
@@ -83,7 +83,7 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
 
       {/* Medium layout: visible only on md+ lg- screens */}
       <div
-        className="hidden md:grid lg:hidden gap-2"
+        className="hidden md:grid lg:hidden gap-2 items-start" // items start to prevent excess whitespace
         style={{
           gridTemplateColumns: `repeat(${gridColumnCountMedium}, minmax(0, 1fr))`,
         }}
@@ -109,7 +109,7 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
 
       {/* Small screens: visible only on sm- screens */}
       <div
-        className="block md:hidden"
+        className="block md:hidden items-start" // items start to prevent excess whitespace
         style={{
           gridTemplateColumns: `repeat(${gridColumnCountSmall}, minmax(0, 1fr))`,
         }}

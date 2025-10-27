@@ -45,7 +45,7 @@ export const NavLinks: GlobalConfig = {
               type: 'text',
             },
             {
-              name: 'link',
+              name: 'link', // Subpage link should auto-fill if empty
               label: 'Link',
               type: 'text',
             },

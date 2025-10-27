@@ -48,8 +48,9 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-      <div className="w-full sm:w-11/12 md:w-4/5 lg:w-2/3 mx-auto px-8 md:px-12 lg:px-24 pb-12 md:pb-24">
+    // commented out  min-h-screen to prevent excess whitespace on homepage
+    <div className="flex flex-col  min-h-screen bg-white">
+      <div className="w-full sm:w-11/12 md:w-4/5 lg:w-2/3 mx-auto px-8 md:px-12 lg:px-24 lg:pb-36 md:pb-24">
         {/*    <div>{homepage_api_data && <pre>{JSON.stringify(homepage_api_data, null, 2)}</pre>}</div> */}
         {heroBlockData ? (
           <HeroBlock block={heroBlockData} key={heroBlockData.id} />

@@ -1,1 +1,14 @@
 @import 'tailwindcss';
+
+/* ensure root elements really are full-height (suggested by copilot) */
+
+html,
+body,
+#__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+main {
+  min-height: 100vh; /* ensures main fills viewport so footer sits correctly */
+}

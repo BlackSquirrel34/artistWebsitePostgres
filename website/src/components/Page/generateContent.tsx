@@ -57,15 +57,4 @@ export async function generateContent(slug: string): Promise<JSX.Element> {
       resolve(<PageNotFound />)
     }
   })
-
-  /* const renderBlock = (block: Page['layout'][0]) => {
-    switch (block.blockType) {
-      case 'hero':
-        return <HeroBlock block={block} key={block.id} />
-      case 'image':
-        return <ImageBlock block={block} key={block.id} />
-      default:
-        return null
-    }
-  } */
 }

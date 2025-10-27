@@ -16,17 +16,17 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const navData = await FetchNavData()
   const ownerName = await fetchOwnerName()
 
+  // // commented out min-h-screen to prevent excess whitespace
   return (
-    <html lang="en">
-      <body>
-        <main>
+    <html lang="en" className="m-0 p-0 h-full">
+      <body className="m-0 p-0 h-full">
+        <main className="flex flex-col min-h-screen">
           <SubRespNav ownerName={ownerName} navData={navData} />
-          {children}
+          {/* Wrap children in a flex-1 container to fill remaining space */}
+          <div className="flex-1 w-full">{children}</div>
           <Footer />
         </main>
       </body>
     </html>
   )
 }
-
-// let's be careful: maybe there are no navdata yet

@@ -13,8 +13,9 @@ export default async function FirstPage({ params }: { params: ParamsType }) {
   const content = generateContent(slug)
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-      <div className="w-full sm:w-11/12 md:w-4/5 lg:w-2/3 mx-auto mt-20 mb-20 px-8 md:px-12 lg:px-24 pb-12 md:pb-24">
+    // flex-1 should help rpevent whitespace /* bg-white min-h-screen border border-green-500 */
+    <div className="flex flex-col  ">
+      <div className="w-full sm:w-11/12 md:w-4/5 lg:w-2/3 mx-auto mt-20 px-8 md:px-12 lg:px-24 pb-12 md:pb-24 flex-1">
         {content}
       </div>
     </div>
