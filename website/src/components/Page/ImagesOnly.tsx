@@ -12,7 +12,9 @@ export default function ImagesOnly({ page }: { page: Page }) {
     if (!page?.image) return []
 
     const imageBlocks = page.image.filter(
-      (block): block is { blockType: 'image'; image: any } => block?.blockType === 'image',
+      // we need to access title and description form the block itself, not the media
+      (block): block is { blockType: 'image'; image: any; title?: string; description?: string } =>
+        block?.blockType === 'image',
     )
 
     return imageBlocks.map((block) => {
@@ -25,6 +27,9 @@ export default function ImagesOnly({ page }: { page: Page }) {
         filename: media.filename ?? 'unknown',
         width: media.width ?? 100, // default width
         height: media.height ?? 100, // default height
+        // we need to access title and description from the block itself, not the media (!!)
+        title: block.title ?? 'no title for this block',
+        description: block.description ?? 'no description for this block',
       } as ImageT
     })
   }, [page])

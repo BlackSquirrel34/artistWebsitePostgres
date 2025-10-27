@@ -18,7 +18,7 @@ interface APIResponsiveGridGalleryProps {
 }
 
 export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGridGalleryProps) {
-  console.log('### api_images: ', api_images)
+  // console.log('### api_images: ', api_images)
   const lightboxRef = useRef<LightGallery | null>(null)
 
   // const images = getImages2()

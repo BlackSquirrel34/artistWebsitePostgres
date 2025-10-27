@@ -26,6 +26,8 @@ export default function ImagesSubpage({ subpage }: { subpage: Subpage }) {
         filename: media.filename ?? 'unknown',
         width: media.width ?? 100, // default width
         height: media.height ?? 100, // default height
+        title: media.title ?? '',
+        description: media.description ?? '',
       } as ImageT
     })
   }, [subpage])
