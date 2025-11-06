@@ -1,4 +1,7 @@
-// storage-adapter-import-placeholder
+// import {s3Adapter} from '@payloadcms/plugin-cloud-storage/s3'
+import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
+import { s3Storage } from '@payloadcms/storage-s3'
+
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
@@ -63,8 +66,40 @@ export default buildConfig({
     }, */
   }),
   sharp,
+  graphQL: {
+    disable: true,
+  },
+  // cors and csrf settings
+  cors: [
+    process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
+    process.env.S3_ENDPOINT || '',
+  ],
+  csrf: [
+    process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
+    process.env.S3_ENDPOINT || '',
+  ],
   plugins: [
-    payloadCloudPlugin(),
-    // storage-adapter-placeholder
+    // payloadCloudPlugin(),
+    s3Storage({
+      collections: {
+        media: {
+          disableLocalStorage: true,
+          disablePayloadAccessControl: true,
+          generateFileURL: ({ filename }) =>
+            `${process.env.S3_ENDPOINT}/${process.env.S3_BUCKET_NAME}/${filename}`,
+        },
+      },
+      bucket: process.env.S3_BUCKET_NAME || '',
+      config: {
+        endpoint: process.env.S3_ENDPOINT || '',
+        region: process.env.S3_REGION || 'us-east-1',
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY || '',
+          secretAccessKey: process.env.S3_SECRET_KEY || '',
+        },
+        // Required for MinIO
+        forcePathStyle: true,
+      },
+    }),
   ],
 })

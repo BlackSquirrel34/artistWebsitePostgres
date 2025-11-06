@@ -22,6 +22,7 @@ export const Media: CollectionConfig = {
   ],
   // upload: true,
   upload: {
+    disableLocalStorage: true,
     mimeTypes: ['image/*', 'application/pdf'],
   },
 }

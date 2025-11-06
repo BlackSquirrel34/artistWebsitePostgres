@@ -1,6 +1,14 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 
 /** @type {import('next').NextConfig} */
+const s3Endpoint = process.env.S3_ENDPOINT || ''
+let s3Hostname = ''
+try {
+  s3Hostname = s3Endpoint ? new URL(s3Endpoint).hostname : ''
+} catch (e) {
+  s3Hostname = ''
+}
+
 const nextConfig = {
   // Your Next.js config here
   webpack: (webpackConfig) => {
@@ -11,6 +19,16 @@ const nextConfig = {
     }
 
     return webpackConfig
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: s3Hostname || 'localhost',
+        port: '',
+        pathname: `/${process.env.S3_BUCKET_NAME || '**'}/**`,
+      },
+    ],
   },
 }
 
