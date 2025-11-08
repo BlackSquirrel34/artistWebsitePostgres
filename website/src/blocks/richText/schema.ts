@@ -38,7 +38,7 @@ export const RichTextBlock: Block = {
           OrderedListFeature(),
           IndentFeature(),
           ParagraphFeature(),
-          LinkFeature(),
+          //  LinkFeature(),
           FixedToolbarFeature(),
         ],
       }),

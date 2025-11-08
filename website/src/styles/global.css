@@ -12,3 +12,21 @@ body,
 main {
   min-height: 100vh; /* ensures main fills viewport so footer sits correctly */
 }
+
+/* custom styling for richText blockquotes */
+.richtext blockquote {
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-left-color: #d1d5db; /* tailwind border-gray-300 */
+  padding-left: 1rem;
+  font-style: italic;
+  color: #374151; /* tailwind text-gray-700 */
+  /* background-color: #f9fafb; /* tailwind bg-gray-50 */
+  margin: 1rem 0;
+  border-radius: 0.125rem;
+}
+
+.richtext p {
+  line-height: 1.75; /* approx leading-7 */
+  color: #1f2937; /* tailwind text-gray-800 */
+}

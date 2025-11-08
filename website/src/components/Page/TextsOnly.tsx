@@ -1,7 +1,12 @@
 import { Page } from '@/payload-types'
 import { Text } from '@/payload-types'
 import PageNotFound from '../PageNotFound'
-import TextPDFDownload from './TextPDFDownload'
+import TextPDFDownload from './Texts/TextPDFDownload'
+import TOC from './Texts/Toc'
+import RichText from './Texts/RichText'
+import Link from 'next/link'
+import ScrollToTop from './Texts/ScrollToTop'
+import TextTopCitation from './Texts/TextTopCitation'
 
 export default function TextsOnly({ page }: { page: Page }) {
   // page.texts can be (number | Text)[] | null | undefined
@@ -16,43 +21,27 @@ export default function TextsOnly({ page }: { page: Page }) {
     return <PageNotFound />
   }
 
-  // Helper to get the first paragraph's text content
-  const getFirstParagraphText = (layout: any[]) => {
-    if (!layout || layout.length === 0) return ''
-    const firstBlock = layout[0]
-    if (firstBlock && firstBlock.blockType === 'richtext' && firstBlock.content?.root?.children) {
-      const firstChild = firstBlock.content.root.children[0]
-      if (firstChild?.children && firstChild.children.length > 0) {
-        return firstChild.children[0].text || ''
-      }
-    }
-    return ''
-  }
-
   return (
     <div className="mt-4 p-4 bg-gray-100 rounded overflow-x-auto">
       {/* TOC with extra padding */}
-      <div className="mb-16">
-        <h2 className="font-bold mb-4">Table of Contents</h2>
-        <ul className="list-disc list-inside">
-          {texts.map((text) => (
-            <li key={text.id} className="mb-2">
-              <strong>{text.title}</strong> by {text.author}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <TOC texts={texts} />
 
       {/* Texts with spacing */}
       {texts.map((text) => (
-        <div key={text.id} className="py-4">
+        <div key={text.id} id={`text-${text.id}`} className="py-4">
           <h3 className="font-bold pb-4">{text.title}</h3>
           {text.pdf && (
             <p>
               <TextPDFDownload text={text} />
             </p>
           )}
-          <p>{getFirstParagraphText(text.layout ?? [])}</p>
+          {text['top-citation'] && (
+            <div>
+              <TextTopCitation text={text} />
+            </div>
+          )}
+          {text.layout?.[0] && <RichText layout={text.layout[0]} />}
+          <ScrollToTop />
         </div>
       ))}
     </div>

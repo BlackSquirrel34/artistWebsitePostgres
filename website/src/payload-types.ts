@@ -193,28 +193,36 @@ export interface Text {
   title: string;
   subtitle?: string | null;
   author: string;
-  layout?:
+  position?: string | null;
+  extrainfo?: string | null;
+  'top-citation'?:
     | {
-        content: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
+        text?: string | null;
+        author?: string | null;
+        further?: string | null;
         id?: string | null;
-        blockName?: string | null;
-        blockType: 'richtext';
       }[]
     | null;
+  layout: {
+    content: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'richtext';
+  }[];
   pdf?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -378,6 +386,16 @@ export interface TextsSelect<T extends boolean = true> {
   title?: T;
   subtitle?: T;
   author?: T;
+  position?: T;
+  extrainfo?: T;
+  'top-citation'?:
+    | T
+    | {
+        text?: T;
+        author?: T;
+        further?: T;
+        id?: T;
+      };
   layout?:
     | T
     | {
