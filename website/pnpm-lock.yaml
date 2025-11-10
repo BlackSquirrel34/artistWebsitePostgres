@@ -65,9 +65,6 @@ importers:
       next:
         specifier: 15.3.2
         version: 15.3.2(@babel/core@7.28.0)(@playwright/test@1.50.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4)
-      next@latest:
-        specifier: link:payloadcms/next@latest
-        version: link:payloadcms/next@latest
       nodemailer:
         specifier: ^7.0.10
         version: 7.0.10
