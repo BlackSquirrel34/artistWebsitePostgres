@@ -24,9 +24,10 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 # Install pnpm globally for Payload operations
 RUN npm install -g pnpm --unsafe-perm
-# Run database migrations
+# Run database migrations non-interactively
+# Use the --yes or -y flag to automatically confirm prompts
 RUN pnpm payload migrate:status || echo "No pending migrations found."
-RUN pnpm payload migrate || echo "No migrations to apply."
+RUN pnpm payload migrate --yes || echo "No migrations to apply."
 # Build the application
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
