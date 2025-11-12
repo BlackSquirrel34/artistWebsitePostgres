@@ -30,6 +30,8 @@ const nextConfig = {
       },
     ],
   },
+  // see https://payloadcms.com/docs/production/deployment
+  output: 'standalone',
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })
