@@ -69,7 +69,7 @@ export default buildConfig({
     disable: true,
   },
   // email: nodemailerAdapter
-  email: nodemailerAdapter({
+  /* email: nodemailerAdapter({
     defaultFromAddress: process.env.DEFAULT_FROM_ADDRESS || 'info@payloadcms.com',
     defaultFromName: process.env.DEFAULT_FROM_NAME || 'Payload',
     // Any Nodemailer transport
@@ -81,7 +81,7 @@ export default buildConfig({
         pass: process.env.SMTP_PASS,
       },
     }),
-  }),
+  }), */
   // cors and csrf settings
   cors: [
     process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
