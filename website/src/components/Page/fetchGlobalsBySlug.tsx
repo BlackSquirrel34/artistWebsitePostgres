@@ -1,4 +1,4 @@
-import { DataFromGlobalSlug, getPayload, GlobalSlug } from 'payload'
+import { getPayload, GlobalSlug } from 'payload'
 import config from '@/payload.config'
 
 // is there a global with this slug?

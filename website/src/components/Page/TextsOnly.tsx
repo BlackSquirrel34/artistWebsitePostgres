@@ -4,7 +4,6 @@ import PageNotFound from '../PageNotFound'
 import TextPDFDownload from './Texts/TextPDFDownload'
 import TOC from './Texts/Toc'
 import RichText from './Texts/RichText'
-import Link from 'next/link'
 import ScrollToTop from './Texts/ScrollToTop'
 import TextTopCitation from './Texts/TextTopCitation'
 

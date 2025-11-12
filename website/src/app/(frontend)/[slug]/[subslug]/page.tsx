@@ -1,4 +1,4 @@
-import { fileURLToPath } from 'url'
+// import { fileURLToPath } from 'url'
 import { generateSubpageContent } from '@/components/Subpage/generateSubContent'
 
 // New pattern - Next.js 15
@@ -14,7 +14,7 @@ export default async function SubPage({ params }: { params: ParamsType }) {
   const { slug, subslug } = await params
   // console.log('slug: ', slug, 'subslug: ', subslug)
 
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  // const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   const subcontent = generateSubpageContent(subslug)
 

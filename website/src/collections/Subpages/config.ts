@@ -1,4 +1,3 @@
-import { HeroBlock } from '@/blocks/hero/schema'
 import { ImageBlock } from '@/blocks/image/schema'
 import { CollectionConfig } from 'payload'
 

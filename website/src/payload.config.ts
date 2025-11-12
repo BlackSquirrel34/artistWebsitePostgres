@@ -1,8 +1,6 @@
 // import {s3Adapter} from '@payloadcms/plugin-cloud-storage/s3'
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import nodemailer from 'nodemailer'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'

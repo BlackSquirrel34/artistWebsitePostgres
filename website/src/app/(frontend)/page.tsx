@@ -1,9 +1,9 @@
 import { headers as getHeaders } from 'next/headers.js'
 import { getPayload } from 'payload'
 import React from 'react'
-import { Homepage, Page } from '@/payload-types'
+// import { Homepage, Page } from '@/payload-types'
 
-import { fileURLToPath } from 'url'
+// import { fileURLToPath } from 'url'
 
 import config from '@/payload.config'
 import HeroBlock from '@/blocks/hero/HeroBlock'
@@ -16,9 +16,9 @@ export default async function HomePage() {
   const headers = await getHeaders()
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
+  // const { user } = await payload.auth({ headers })
 
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  // const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   const homepage_api_data = await payload.findGlobal({
     slug: 'homepage',

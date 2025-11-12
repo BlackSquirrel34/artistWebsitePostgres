@@ -1,4 +1,4 @@
-import { Homepage, Page } from '@/payload-types'
+import { Homepage } from '@/payload-types'
 import Image from 'next/image'
 
 // to fix red squiggles cuz of types

@@ -9,7 +9,7 @@ import {
   OrderedListFeature,
   IndentFeature,
   ParagraphFeature,
-  LinkFeature,
+  // LinkFeature,
   lexicalEditor,
   UnderlineFeature,
 } from '@payloadcms/richtext-lexical'
