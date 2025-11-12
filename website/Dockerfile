@@ -26,8 +26,8 @@ COPY . .
 RUN npm install -g pnpm --unsafe-perm
 # Run database migrations non-interactively
 # Use the --yes or -y flag to automatically confirm prompts
-RUN pnpm payload migrate:status || echo "No pending migrations found."
-RUN pnpm payload migrate --yes || echo "No migrations to apply."
+# RUN pnpm payload migrate:status || echo "No pending migrations found."
+# RUN pnpm payload migrate --yes || echo "No migrations to apply."
 # Build the application
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
