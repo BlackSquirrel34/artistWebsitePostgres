@@ -28,5 +28,6 @@ main {
 
 .richtext p {
   line-height: 1.75; /* approx leading-7 */
+  margin-bottom: 1.1em;
   color: #1f2937; /* tailwind text-gray-800 */
 }
