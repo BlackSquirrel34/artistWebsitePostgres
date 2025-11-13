@@ -5,7 +5,7 @@ interface EventType {
   description: string
 }
 interface CVProps {
-  cvEvents: EventType[] // strongly typed array
+  cvEvents: EventType[]
 }
 
 export default function CV({ cvEvents }: CVProps) {
