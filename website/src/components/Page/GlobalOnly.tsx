@@ -1,5 +1,9 @@
 'use client'
 
+import Acquisitions from '@/globals/components/Acquisitions'
+import Contact from '@/globals/components/Contact'
+import CV from '@/globals/components/CV'
+import ExhibParts from '@/globals/components/ExhibParts'
 import React, { useState, useEffect, JSX } from 'react'
 
 // this one should take an array og globals (sic) and map over them when rendering.
@@ -30,23 +34,11 @@ export default function GlobalOnly({ globals }: GlobalOnlyProps) {
           <div key={index}>
             {/* if there's a contact global present in the array, we'll render it */}
             {global.contactDetails && typeof global.contactDetails === 'object' && (
-              <div>
-                {/* Extract values using optional chaining and safe property access */}
-                <p>{global.contactDetails?.name || 'N/A'}</p>
-                <p>{global.contactDetails?.address || 'N/A'}</p>
-                <p>{global.contactDetails?.email || 'N/A'}</p>
-              </div>
+              <Contact contactDetails={global.contactDetails} />
             )}
 
             {/*       if there's a cvEvents global present, we'll render it */}
-            {Array.isArray(global.cvEvents) &&
-              global.cvEvents.map((event, index) => (
-                <div key={index}>
-                  <p>
-                    <strong>{event.year}</strong> {event.description}
-                  </p>
-                </div>
-              ))}
+            {Array.isArray(global.cvEvents) && <CV cvEvents={global.cvEvents} />}
             {/* if the global with the years with exhibitions is present, render this one */}
             {global.exhibYears && (
               <>
@@ -85,69 +77,12 @@ export default function GlobalOnly({ globals }: GlobalOnlyProps) {
             )}
 
             {/* if the global with the years participated in exhibitions is present, render this one */}
-            {global.yearExhibPart && (
-              <>
-                <h1 className="text-2xl">Ausstellungsbeteiligungen (Auswahl)</h1>
-                {global.yearExhibPart.map(
-                  (
-                    yearData: {
-                      year: string
-                      exhibitions: {
-                        description: string
-                        katalog: boolean
-                      }[]
-                    },
-                    index: number,
-                  ) => (
-                    <div key={index}>
-                      <h3 className="text-xl">{yearData.year}</h3>
-                      {yearData.exhibitions.map(
-                        (
-                          exhibition: {
-                            description: string
-                            katalog: boolean
-                          },
-                          subIndex: number,
-                        ) => (
-                          <div key={subIndex}>
-                            <p>{exhibition.description}</p>
-                            {exhibition.katalog && ' K'}
-                          </div>
-                        ),
-                      )}
-                    </div>
-                  ),
-                )}
-              </>
-            )}
+            {global.yearExhibPart && <ExhibParts yearExhibPart={global.yearExhibPart} />}
 
             {/* if the global with tacquisitions is present, render this one */}
             {global.acquisitionEvents && (
-              <>
-                <h1 className="text-2xl">Ankäufe</h1>
-                {global.acquisitionEvents.map(
-                  (
-                    event: {
-                      year: string
-                      description: string
-                    },
-                    index: number,
-                  ) => (
-                    <div key={index}>
-                      <p>
-                        <strong>{event.year}</strong> {event.description}
-                      </p>
-                    </div>
-                  ),
-                )}
-              </>
+              <Acquisitions acquisitionEvents={global.acquisitionEvents} />
             )}
-
-            {/*     {Object.entries(global).map(([key, value]) => (
-              <div key={key}>
-                <b>{key}:</b> {JSON.stringify(value)}
-              </div>
-            ))} */}
           </div>
         ))}
       </div>
