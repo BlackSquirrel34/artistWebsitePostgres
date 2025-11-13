@@ -4,15 +4,16 @@ import Link from 'next/link'
 export default function Footer() {
   const footerText = process.env.FOOTER_TEXT
   const footerSignature = process.env.FOOTER_SIGNATURE
-  const signatureLink = process.env.SIGNATURE_LINK || '/'
+  const signatureLink = process.env.FOOTER_SIGNATURE_LINK || '/'
 
   return (
     <footer className="bg-gray-900 text-gray-400 py-3">
-      <div className="container mx-auto flex items-center justify-center px-4 py-3">
-        {/* Centered link */}
-        <div className="hover:text-white pb-2">{footerText}</div>
+      <div className="container mx-auto flex flex-col items-center justify-center px-4 py-3">
+        {/* footerText on its own line, centered */}
+        <p className="hover:text-white mb-2 text-center">{footerText}</p>
+        {/* footerSignature on its own line, centered */}
         <Link href={signatureLink}>
-          <div className="hover:text-white">{footerSignature}</div>
+          <p className="hover:text-white text-center">{footerSignature}</p>
         </Link>
       </div>
     </footer>
