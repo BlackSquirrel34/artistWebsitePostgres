@@ -4,7 +4,6 @@ import Link from 'next/link'
 export default function TOC({ texts }: { texts: Text[] }) {
   return (
     <div className="mb-16" id="toc">
-      <h2 className="font-bold mb-4">Table of Contents</h2>
       <ul className="list-none">
         {texts.map((text) => {
           const pdfUrl = typeof text.pdf !== 'number' && text.pdf?.url ? `${text.pdf.url}` : ''

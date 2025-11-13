@@ -29,6 +29,8 @@ export default function TextsOnly({ page }: { page: Page }) {
       {texts.map((text) => (
         <div key={text.id} id={`text-${text.id}`} className="py-4">
           <h3 className="font-bold pb-4">{text.title}</h3>
+          <h4 className="pb-4">{text.subtitle}</h4>
+          <h4 className="italic pb-4">{text.author}</h4>
           {text.pdf && (
             <p>
               <TextPDFDownload text={text} />
