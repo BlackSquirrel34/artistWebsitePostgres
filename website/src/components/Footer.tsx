@@ -1,4 +1,3 @@
-import { footer } from '@/payload-generated-schema'
 import Link from 'next/link'
 
 export default function Footer() {
