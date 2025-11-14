@@ -5,8 +5,8 @@ import Footer from '@/components/Footer'
 import FetchNavData, { fetchOwnerName } from '@/utils/fetchNavData'
 
 export const metadata = {
-  description: 'A website about the artist showcasing their works, biography, and news',
-  title: 'Artist Website',
+  description: process.env.METADATA_DESCRIPTION,
+  title: process.env.METADATA_TITLE,
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-gray-400 py-3">
       <div className="container mx-auto flex flex-col items-center justify-center px-4 py-3">
         {/* footerText on its own line, centered */}
-        <p className="hover:text-white mb-2 text-center">{footerText}</p>
+        <p className="mb-2 text-center">{footerText}</p>
         {/* footerSignature on its own line, centered */}
         <Link href={signatureLink}>
           <p className="hover:text-white text-center">{footerSignature}</p>
