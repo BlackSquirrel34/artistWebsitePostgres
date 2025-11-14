@@ -36,12 +36,6 @@ export default async function HomePage() {
   // Initialize heroBlockData as null
   let heroBlockData = null
 
-  // Check if featuredimage exists
-  /* if (homepage_api_data.featuredimage) {
-    // Find the hero block inside featuredimage
-    heroBlockData = homepage_api_data.featuredimage.find((block) => block.blockType === 'hero')
-  } */
-
   if (homepage_api_data.featuredimage && homepage_api_data.featuredimage.length > 0) {
     // Find the first block with blockType 'hero'
     heroBlockData = homepage_api_data.featuredimage.find((block) => block.blockType === 'hero')

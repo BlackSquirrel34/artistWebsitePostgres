@@ -1,28 +1,40 @@
 'use client'
-// import { getImages2 } from '@/utils/apiMock2'
+
 import { ImageT } from '@/utils/types'
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
+import 'yet-another-react-lightbox/styles.css'
+import '@/styles/global.css'
+import 'yet-another-react-lightbox/plugins/captions.css'
+import { Lightbox } from 'yet-another-react-lightbox'
+import Captions from 'yet-another-react-lightbox/plugins/captions'
+import NextJsImage from './Lightbox'
 // next image instead of img for optimization
 import Image from 'next/image'
-
-import type { LightGallery } from 'lightgallery/lightgallery'
-import LightGalleryComponent from 'lightgallery/react'
-// import styles
-import 'lightgallery/css/lightgallery.css'
-import 'lightgallery/css/lg-zoom.css'
-// import plugins
-import lgZoom from 'lightgallery/plugins/zoom'
-
 interface APIResponsiveGridGalleryProps {
-  api_images: ImageT[] // from types, not mockAPI, that's important
+  api_images: ImageT[]
 }
 
 export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGridGalleryProps) {
-  // console.log('### api_images: ', api_images)
-  const lightboxRef = useRef<LightGallery | null>(null)
+  // State for lightbox
+  const [open, setOpen] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const handleImageClick = (index: number) => {
+    setCurrentIndex(index)
+    setOpen(true)
+  }
 
   // const images = getImages2()
   const images = api_images
+
+  const slides = api_images.map((img) => ({
+    src: img.url,
+    alt: img.alt,
+    width: img.width,
+    height: img.height,
+    title: img.title, // pass title
+    description: img.description, // pass description
+  }))
 
   const gridColumnCountLarge = 12
   const gridColumnCountMedium = 6
@@ -75,7 +87,7 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
               height={img.height}
               className="w-full h-auto"
               // we want to trigger lightgallery
-              onClick={() => lightboxRef.current?.openGallery(index)}
+              onClick={() => handleImageClick(index)}
             />
           </div>
         ))}
@@ -101,7 +113,7 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
               alt={img.name}
               className="w-full h-auto"
               // we want to trigger lightgallery
-              onClick={() => lightboxRef.current?.openGallery(index)}
+              onClick={() => handleImageClick(index)}
             />
           </div>
         ))}
@@ -122,28 +134,25 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
               src={img.url}
               alt={img.alt}
               className="w-full h-auto py-2" // we want to trigger lightgallery
-              onClick={() => lightboxRef.current?.openGallery(index)}
+              onClick={() => handleImageClick(index)}
             />
           </div>
         ))}
       </div>
 
-      {/* LightGallery component for lightbox functionality */}
-      <LightGalleryComponent
-        onInit={(ref) => {
-          if (ref) {
-            lightboxRef.current = ref.instance
-          }
+      {/* Lightbox with custom slide renderer */}
+      <Lightbox
+        open={open}
+        index={currentIndex}
+        close={() => setOpen(false)}
+        slides={slides}
+        plugins={[Captions]}
+        captions={{
+          descriptionTextAlign: 'center',
         }}
-        speed={500}
-        plugins={[lgZoom]}
-        escKey
-        dynamic
-        dynamicEl={images.map((image) => ({
-          src: image.url,
-          thumb: image.url,
-          subHtml: `<h4>${image.title ?? 'untitled'}</h4><p>${image.description ?? 'no description'}</p>`,
-        }))}
+        render={{
+          slide: NextJsImage,
+        }}
       />
     </div>
   )

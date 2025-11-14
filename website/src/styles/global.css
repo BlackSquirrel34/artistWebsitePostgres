@@ -31,3 +31,14 @@ main {
   margin-bottom: 1.1em;
   color: #1f2937; /* tailwind text-gray-800 */
 }
+
+/* custom lightboy styles */
+/* Centers the title */
+.yarl__slide_title {
+  text-align: center;
+}
+
+/* Centers the description */
+.yarl__slide_description {
+  text-align: center;
+}

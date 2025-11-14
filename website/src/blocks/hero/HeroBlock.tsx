@@ -22,7 +22,7 @@ export default function HeroBlock({ block }: { block: HeroProps }) {
       )}
 
       {/* Add some margin at the top of the description for spacing */}
-      <p className="mt-6 text-center">{block.description}</p>
+      {/*  <p className="mt-6 text-center">{block.description}</p> */}
     </div>
   )
 }
