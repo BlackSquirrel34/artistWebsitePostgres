@@ -1,6 +1,7 @@
 // import {s3Adapter} from '@payloadcms/plugin-cloud-storage/s3'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { resendAdapter } from '@payloadcms/email-resend'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import nodemailer from 'nodemailer'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
@@ -69,7 +70,12 @@ export default buildConfig({
   graphQL: {
     disable: true,
   },
-  // email: nodemailerAdapter
+  // email: resend
+  email: resendAdapter({
+    defaultFromAddress: 'payloadcms@web.de',
+    defaultFromName: 'Payload CMS',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
   /* email: nodemailerAdapter({
     defaultFromAddress: process.env.DEFAULT_FROM_ADDRESS || 'info@payloadcms.com',
     defaultFromName: process.env.DEFAULT_FROM_NAME || 'Payload',
