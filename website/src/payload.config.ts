@@ -1,9 +1,6 @@
-// import {s3Adapter} from '@payloadcms/plugin-cloud-storage/s3'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { resendAdapter } from '@payloadcms/email-resend'
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
-import nodemailer from 'nodemailer'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -61,10 +58,6 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
-    /*   pool: {
-      connectionString:
-        'postgres://postgres:J7YdgqszOIWNLA9vh5FMMH67ZF9KUVsMCXiuPr6G7X1EQq9MngMgnUGxvp174CeA@88.99.38.215:5432/postgres',
-    }, */
   }),
   sharp,
   graphQL: {
@@ -72,23 +65,10 @@ export default buildConfig({
   },
   // email: resend
   email: resendAdapter({
-    defaultFromAddress: 'payloadcms@web.de',
+    defaultFromAddress: process.env.RESEND_DEFAULT_FROM_ADDRESS || '',
     defaultFromName: 'Payload CMS',
     apiKey: process.env.RESEND_API_KEY || '',
   }),
-  /* email: nodemailerAdapter({
-    defaultFromAddress: process.env.DEFAULT_FROM_ADDRESS || 'info@payloadcms.com',
-    defaultFromName: process.env.DEFAULT_FROM_NAME || 'Payload',
-    // Any Nodemailer transport
-    transport: await nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT || 587,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    }),
-  }), */
   // cors and csrf settings
   cors: [
     process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
