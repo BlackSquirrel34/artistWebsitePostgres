@@ -1,3 +1,5 @@
+'use client'
+
 import {
   RenderSlideProps,
   isImageFitCover,
@@ -19,13 +21,25 @@ export default function NextJsImage({ slide, offset, rect }: RenderSlideProps) {
 
   const width = rect.width
   const height = rect.height
+
+  // use official isImageSlide Type Guard, to access src and alt safely
+  // TypeScript now knows that slide is of type ImageSlide
+  if (!isImageSlide(slide)) {
+    // Optional: render fall back or null if not an image slide
+    console.warn('Das Slide ist kein Bild-Slide und wird nicht mit next/image gerendert.')
+    return null
+  }
+
+  // in this scope slide is definitely an ImageSlide
+  const src = slide.src
+  // 'alt' is possibly undefined, so we provide a default value
   const alt = slide.alt || 'Image'
 
   return (
     <div style={{ position: 'relative', width, height }}>
       <Image
         fill
-        src={slide.src}
+        src={src}
         alt={alt}
         style={{
           objectFit: cover ? 'cover' : 'contain',
