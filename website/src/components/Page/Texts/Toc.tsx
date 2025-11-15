@@ -16,14 +16,14 @@ export default function TOC({ texts }: { texts: Text[] }) {
               {pdfUrl && (
                 <>
                   {' '}
-                  <Link
+                  <a
                     href={pdfUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline"
                   >
                     [PDF]
-                  </Link>
+                  </a>
                 </>
               )}
               <div>
