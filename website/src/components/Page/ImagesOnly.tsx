@@ -28,8 +28,8 @@ export default function ImagesOnly({ page }: { page: Page }) {
         width: media.width ?? 100, // default width
         height: media.height ?? 100, // default height
         // we need to access title and description from the block itself, not the media (!!)
-        title: block.title ?? 'no title for this block',
-        description: block.description ?? 'no description for this block',
+        title: block.title ?? 'k.A.',
+        description: block.description ?? 'k.A.',
       } as ImageT
     })
   }, [page])

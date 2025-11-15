@@ -1,15 +1,18 @@
 'use client'
 
 import { ImageT } from '@/utils/types'
-import { useRef, useEffect, useState } from 'react'
-import 'yet-another-react-lightbox/styles.css'
-import '@/styles/global.css'
-import 'yet-another-react-lightbox/plugins/captions.css'
-import { Lightbox } from 'yet-another-react-lightbox'
-import Captions from 'yet-another-react-lightbox/plugins/captions'
-import NextJsImage from './Lightbox'
+import { useState } from 'react'
 // next image instead of img for optimization
 import Image from 'next/image'
+
+// yet-another-react-lightbox
+import { Lightbox } from 'yet-another-react-lightbox'
+import { Captions, Zoom } from 'yet-another-react-lightbox/plugins'
+import '@/styles/global.css'
+import 'yet-another-react-lightbox/styles.css'
+import 'yet-another-react-lightbox/plugins/captions.css'
+import NextJsImage from './Lightbox'
+
 interface APIResponsiveGridGalleryProps {
   api_images: ImageT[]
 }
@@ -146,7 +149,7 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
         index={currentIndex}
         close={() => setOpen(false)}
         slides={slides}
-        plugins={[Captions]}
+        plugins={[Captions, Zoom]}
         captions={{
           descriptionTextAlign: 'center',
         }}
