@@ -43,14 +43,3 @@ export default function TOC({ texts }: { texts: Text[] }) {
     </div>
   )
 }
-
-/* 
-           {texts.map((text) => (
-            // generating link to pdf if its there
-          <li key={text.id} className="mb-2">
-            <Link href={`#text-${text.id}`} className="hover:underline">
-              <strong>{text.title}</strong>
-            </Link>{' '}
-            by {text.author}
-          </li>
-        ))} */
