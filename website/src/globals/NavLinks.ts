@@ -55,8 +55,8 @@ export const NavLinks: GlobalConfig = {
         },
       ],
       minRows: 1,
-      maxRows: 15,
-      // allow not more than 15 main nav items
+      maxRows: 25,
+      // allow not more than 25 main nav items
     },
   ],
 }
