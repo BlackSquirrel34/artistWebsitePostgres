@@ -36,7 +36,7 @@ export const NavLinks: GlobalConfig = {
           type: 'text',
           admin: {
             description:
-              'Wichtig: damit die Navigation funktioniert, muss der link exakt übereinstimmen mit dem Slug (Kürzel) der Seite, zu der navigiert werden soll. Keine Sonderzeichen, Unterstriche sind okay.',
+              'Wichtig: Damit die Navigation funktioniert, muss der Link exakt übereinstimmen mit dem Slug (Kürzel) der Seite, zu der navigiert werden soll. Keine Sonderzeichen, Unterstriche sind okay.',
           },
         },
         {
@@ -44,7 +44,8 @@ export const NavLinks: GlobalConfig = {
           label: 'Links auf Unterseiten',
           type: 'array',
           admin: {
-            description: 'Machen nur Sinn anzulegen wenn die Seite tatsächlich Unterseiten hat.',
+            description:
+              'Links auf Unterseiten machen nur Sinn anzulegen wenn die Seite tatsächlich Unterseiten hat.',
           },
           fields: [
             {
