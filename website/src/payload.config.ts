@@ -27,6 +27,11 @@ import { NavLinks } from './globals/NavLinks'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+// we want to enable both https://www.mydomain.com AND https://mydomain.com for CORS/ CSRF settings
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+const url = new URL(baseUrl)
+const hostname = url.hostname
+
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_BASE_DNS,
   admin: {
@@ -70,14 +75,8 @@ export default buildConfig({
     apiKey: process.env.RESEND_API_KEY || '',
   }),
   // cors and csrf settings
-  cors: [
-    process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
-    process.env.S3_ENDPOINT || '',
-  ],
-  csrf: [
-    process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
-    process.env.S3_ENDPOINT || '',
-  ],
+  cors: [baseUrl, `https://www.${hostname}`, process.env.S3_ENDPOINT || ''],
+  csrf: [baseUrl, `https://www.${hostname}`, process.env.S3_ENDPOINT || ''],
   plugins: [
     // payloadCloudPlugin(),
     s3Storage({

@@ -169,6 +169,9 @@ export interface User {
  */
 export interface Media {
   id: number;
+  /**
+   * Der Name wird verwendet falls das Bild nicht geladen werden kann, oder auch für sehbehinderte Menschen. (= alt-tag)
+   */
   name: string;
   updatedAt: string;
   createdAt: string;
@@ -193,7 +196,13 @@ export interface Text {
   title: string;
   subtitle?: string | null;
   author: string;
+  /**
+   * Berufliche Position des Autors/ der Autorin
+   */
   position?: string | null;
+  /**
+   * Angaben wie beispielsweise das Datum der Ausstellungseröffnung
+   */
   extrainfo?: string | null;
   'top-citation'?:
     | {
@@ -236,8 +245,14 @@ export interface Text {
 export interface Page {
   id: number;
   name: string;
+  /**
+   * Ein Kürzel, mit dem die Webseite intern nach dieser Seite sucht. Muss identisch sein mit dem Link in der Navigation. Keine Sonderzeichen und Umlaute verwenden.
+   */
   slug: string;
   image?: Image[] | null;
+  /**
+   * Hier können der Seite Texte hinzugefügt werden. Texte bearbeiten mit Klick auf das Stift-Symbol.
+   */
   texts?: (number | Text)[] | null;
   updatedAt: string;
   createdAt: string;
@@ -255,7 +270,7 @@ export interface Image {
   blockType: 'image';
 }
 /**
- * Unterseiten können hier hinzugefügt und verwaltet werden. Sie müssen zwingend mit einer Seite (Parent page) verknüpft werden.
+ * Unterseiten können hier hinzugefügt und verwaltet werden.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "subpages".
@@ -263,7 +278,13 @@ export interface Image {
 export interface Subpage {
   id: number;
   name: string;
+  /**
+   * Ein Kürzel, mit dem die Webseite intern nach dieser Seite sucht. Muss identisch sein mit dem Link in der Navigation. Keine Sonderzeichen und Umlaute verwenden.
+   */
   slug: string;
+  /**
+   * Jede Unterseite muss einer Seite (Parent-Page) zugeordnet sein. Sonst wäre es keine Unterseite.
+   */
   parentPage: number | Page;
   layout?: Image[] | null;
   updatedAt: string;
@@ -526,13 +547,34 @@ export interface NavLink {
   id: number;
   navItems?:
     | {
+        /**
+         * Wird im Navigationsmenü auf der Webseite angezeigt. Sonderzeichen okay.
+         */
         label?: string | null;
+        /**
+         * Wird im Moment von der Webseite nicht verwendet.
+         */
         years?: string | null;
+        /**
+         * Wichtig: Damit die Navigation funktioniert, muss der Link exakt übereinstimmen mit dem Slug (Kürzel) der Seite, zu der navigiert werden soll. Keine Sonderzeichen, Unterstriche sind okay.
+         */
         link?: string | null;
+        /**
+         * Links auf Unterseiten machen nur Sinn anzulegen wenn die Seite tatsächlich Unterseiten hat.
+         */
         subpageLinks?:
           | {
+              /**
+               * Wird im Navigationsmenü auf der Webseite angezeigt. Sonderzeichen okay.
+               */
               label?: string | null;
+              /**
+               * Wird im Moment von der Webseite nicht verwendet.
+               */
               years?: string | null;
+              /**
+               * Ein Link zu einer Unterseite muss auch den Link (Slug) der übergeordneten Seite als Präfix haben. Also z.B. so: link_seite/link_unterseite
+               */
               link?: string | null;
               id?: string | null;
             }[]
