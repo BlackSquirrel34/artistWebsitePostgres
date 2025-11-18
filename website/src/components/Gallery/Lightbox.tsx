@@ -8,6 +8,7 @@ import {
   isImageSlide,
 } from 'yet-another-react-lightbox'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 export default function NextJsImage({ slide, offset, rect }: RenderSlideProps) {
   const {
@@ -36,7 +37,21 @@ export default function NextJsImage({ slide, offset, rect }: RenderSlideProps) {
   const alt = slide.alt || 'Image'
 
   return (
-    <div style={{ position: 'relative', width, height }}>
+    <motion.div
+      style={{ position: 'relative', width, height }}
+      initial={{
+        opacity: 0,
+      }}
+      whileInView={{
+        opacity: 1,
+      }}
+      transition={{
+        duration: 1,
+      }}
+      viewport={{
+        once: true,
+      }}
+    >
       <Image
         fill
         src={src}
@@ -48,6 +63,6 @@ export default function NextJsImage({ slide, offset, rect }: RenderSlideProps) {
         sizes={`${Math.ceil((width / window.innerWidth) * 100)}vw`}
         onClick={offset === 0 ? () => click?.({ index: currentIndex }) : undefined}
       />
-    </div>
+    </motion.div>
   )
 }

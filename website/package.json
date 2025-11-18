@@ -31,6 +31,7 @@
     "@tailwindcss/postcss": "^4.1.11",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
+    "framer-motion": "^12.23.24",
     "graphql": "^16.8.1",
     "libsql": "^0.5.17",
     "lightgallery": "^2.9.0",

@@ -4,6 +4,7 @@ import { ImageT } from '@/utils/types'
 import { useState } from 'react'
 // next image instead of img for optimization
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 // yet-another-react-lightbox
 import { Lightbox } from 'yet-another-react-lightbox'
@@ -71,10 +72,22 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
   return (
     <div className="p-4 max-w-[1200px] mx-auto">
       {/* Large layout: visible only on lg+ screens */}
-      <div
+      <motion.div
         className="hidden lg:grid lg:min-w-[800px] gap-4 items-start" // items start to prevent excess whitespace
         style={{
           gridTemplateColumns: `repeat(${gridColumnCountLarge}, minmax(0, 1fr))`,
+        }}
+        initial={{
+          opacity: 0,
+        }}
+        whileInView={{
+          opacity: 1,
+        }}
+        transition={{
+          duration: 1,
+        }}
+        viewport={{
+          once: true,
         }}
       >
         {imagesWithSpans.map((img, index) => (
@@ -94,13 +107,25 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
             />
           </div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Medium layout: visible only on md+ lg- screens */}
-      <div
+      <motion.div
         className="hidden md:grid lg:hidden gap-2 items-start" // items start to prevent excess whitespace
         style={{
           gridTemplateColumns: `repeat(${gridColumnCountMedium}, minmax(0, 1fr))`,
+        }}
+        initial={{
+          opacity: 0,
+        }}
+        whileInView={{
+          opacity: 1,
+        }}
+        transition={{
+          duration: 1,
+        }}
+        viewport={{
+          once: true,
         }}
       >
         {imagesWithSpans.map((img, index) => (
@@ -120,13 +145,25 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
             />
           </div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Small screens: visible only on sm- screens */}
-      <div
+      <motion.div
         className="block md:hidden items-start" // items start to prevent excess whitespace
         style={{
           gridTemplateColumns: `repeat(${gridColumnCountSmall}, minmax(0, 1fr))`,
+        }}
+        initial={{
+          opacity: 0,
+        }}
+        whileInView={{
+          opacity: 1,
+        }}
+        transition={{
+          duration: 1,
+        }}
+        viewport={{
+          once: true,
         }}
       >
         {images.map((img, index) => (
@@ -141,7 +178,7 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
             />
           </div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Lightbox with custom slide renderer */}
       <Lightbox

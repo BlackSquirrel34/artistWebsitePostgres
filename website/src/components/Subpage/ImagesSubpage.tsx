@@ -13,7 +13,8 @@ export default function ImagesSubpage({ subpage }: { subpage: Subpage }) {
     if (!subpage?.layout) return []
 
     const imageBlocks = subpage.layout.filter(
-      (block): block is { blockType: 'image'; image: any } => block?.blockType === 'image',
+      (block): block is { blockType: 'image'; image: any; title?: string; description?: string } =>
+        block?.blockType === 'image',
     )
 
     return imageBlocks.map((block) => {
@@ -26,8 +27,9 @@ export default function ImagesSubpage({ subpage }: { subpage: Subpage }) {
         filename: media.filename ?? 'unknown',
         width: media.width ?? 100, // default width
         height: media.height ?? 100, // default height
-        title: media.title ?? '',
-        description: media.description ?? '',
+        // we need to access title and description from the block itself, not the media (!!)
+        title: block.title ?? 'k.A.',
+        description: block.description ?? 'k.A.',
       } as ImageT
     })
   }, [subpage])

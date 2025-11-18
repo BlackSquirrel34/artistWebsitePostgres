@@ -1,3 +1,14 @@
 export default function PageNotFound() {
-  return <div>Page was not found. we found neither a slug nor global with this name. 404</div>
+  return (
+    <div>
+      <div className="pb-4">
+        Diese Seite wurde nicht gefunden. Offenbar existiert kein entsprechender Slug/Global.
+      </div>
+
+      <div>
+        <p className="pb-2.5">Status Code:</p>
+        404
+      </div>
+    </div>
+  )
 }
