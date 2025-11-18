@@ -37,11 +37,17 @@ export const Texts: CollectionConfig = {
       name: 'position',
       label: 'Position',
       type: 'text',
+      admin: {
+        description: 'Berufliche Position des Autors/ der Autorin',
+      },
     },
     {
       name: 'extrainfo',
       label: 'zusätzliche Angaben',
       type: 'text',
+      admin: {
+        description: 'Angaben wie beispielsweise das Datum der Ausstellungseröffnung',
+      },
     },
     {
       name: 'top-citation',

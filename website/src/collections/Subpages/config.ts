@@ -14,8 +14,7 @@ export const Subpages: CollectionConfig = {
     // they must be created via Pages
     // upon rendering we'll just use the pages and query via the relationship
     // hidden: true,
-    description:
-      'Unterseiten können hier hinzugefügt und verwaltet werden. Sie müssen zwingend mit einer Seite (Parent page) verknüpft werden.',
+    description: 'Unterseiten können hier hinzugefügt und verwaltet werden.',
   },
   fields: [
     {
@@ -30,6 +29,8 @@ export const Subpages: CollectionConfig = {
       type: 'text',
       admin: {
         position: 'sidebar',
+        description:
+          'Ein Kürzel, mit dem die Webseite intern nach dieser Seite sucht. Muss identisch sein mit dem Link in der Navigation. Keine Sonderzeichen und Umlaute verwenden.',
       },
       required: true,
     },
@@ -39,6 +40,10 @@ export const Subpages: CollectionConfig = {
       type: 'relationship',
       relationTo: 'pages',
       required: true,
+      admin: {
+        description:
+          'Jede Unterseite muss einer Seite (Parent-Page) zugeordnet sein. Sonst wäre es keine Unterseite.',
+      },
     },
     {
       name: 'layout',

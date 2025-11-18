@@ -18,6 +18,10 @@ export const Media: CollectionConfig = {
       name: 'name',
       type: 'text',
       required: true,
+      admin: {
+        description:
+          'Der Name wird verwendet falls das Bild nicht geladen werden kann, oder auch für sehbehinderte Menschen. (= alt-tag)',
+      },
     },
   ],
   // upload: true,

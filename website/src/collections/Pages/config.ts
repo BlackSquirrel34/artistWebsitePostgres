@@ -27,6 +27,8 @@ export const Pages: CollectionConfig = {
       type: 'text',
       admin: {
         position: 'sidebar',
+        description:
+          'Ein Kürzel, mit dem die Webseite intern nach dieser Seite sucht. Muss identisch sein mit dem Link in der Navigation. Keine Sonderzeichen und Umlaute verwenden.',
       },
       required: true,
     },
@@ -51,6 +53,10 @@ export const Pages: CollectionConfig = {
       label: 'Texte',
       relationTo: 'texts',
       hasMany: true,
+      admin: {
+        description:
+          'Hier können der Seite Texte hinzugefügt werden. Texte bearbeiten mit Klick auf das Stift-Symbol.',
+      },
     },
   ],
 }
