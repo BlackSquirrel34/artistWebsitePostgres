@@ -101,7 +101,7 @@ export default function APIResponsiveGridGallery({ api_images }: APIResponsiveGr
               alt={img.alt}
               width={img.width}
               height={img.height}
-              className="w-full h-auto"
+              className="w-full h-auto hover:cursor-pointer"
               // we want to trigger lightgallery
               onClick={() => handleImageClick(index)}
             />

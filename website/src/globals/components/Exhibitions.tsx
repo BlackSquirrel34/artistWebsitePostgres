@@ -6,7 +6,13 @@ interface ExhibYearsProps {
 export default function Exhibitions({ exhibYears }: ExhibYearsProps) {
   return (
     <>
-      <h1 className="text-2xl mb-8 text-center">Einzelausstellungen (Auswahl)</h1>
+      <div className="mb-8">
+        <h1 className="text-2xl mb-5 text-center">Einzelausstellungen (Auswahl)</h1>
+        <p className="text-center font-light opacity-80">
+          <span className="font-bold">K:</span> Katalog
+        </p>
+      </div>
+
       {/* Container for all year+exhibitions blocks */}
       <div className="flex flex-col space-y-4">
         {exhibYears.map((yearData, index) => (

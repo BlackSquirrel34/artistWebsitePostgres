@@ -7,7 +7,13 @@ interface ExhibPartProps {
 export default function ExhibParts({ yearExhibPart }: ExhibPartProps) {
   return (
     <>
-      <h1 className="text-2xl mb-8 text-center">Ausstellungsbeteiligungen (Auswahl)</h1>
+      <div className="mb-8">
+        <h1 className="text-2xl mb-5 text-center">Ausstellungsbeteiligungen (Auswahl)</h1>
+        <p className="text-center font-light opacity-80">
+          <span className="font-bold">K:</span> Katalog
+        </p>
+      </div>
+
       {/* Main container with flex column for each year and exhibitions */}
       <div className="flex flex-col space-y-4">
         {yearExhibPart.map((yearData, index) => (
