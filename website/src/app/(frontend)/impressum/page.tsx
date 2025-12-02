@@ -35,9 +35,9 @@ export default async function HomePage() {
             Die bereitgestellten Informationen auf dieser Website wurden sorgfältig geprüft und
             werden regelmäßig aktualisiert. Jedoch kann keine Garantie dafür übernommen werden, dass
             alle Angaben zu jeder Zeit vollständig, richtig und in letzter Aktualität dargestellt
-            sind. Dies gilt insbesondere für alle Verbindungen ("Links") zu anderen Websites, auf
-            die direkt oder indirekt verwiesen wird. Alle Angaben können ohne vorherige Ankündigung
-            geändert, entfernt oder ergänzt werden.
+            sind. Dies gilt insbesondere für alle Verbindungen (&quot;Links&quot;) zu anderen
+            Websites, auf die direkt oder indirekt verwiesen wird. Alle Angaben können ohne
+            vorherige Ankündigung geändert, entfernt oder ergänzt werden.
           </p>
         </div>
       </div>
